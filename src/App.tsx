@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route } from 'react-router-dom';
 
 import CharacterList from './pages/CharacterList';
 import CharacterDetail from './pages/CharacterDetail';

@@ -1,4 +1,4 @@
-function CharacterList({ hola }) {
+function CharacterList() {
   return <main>Character list</main>;
 }
 
