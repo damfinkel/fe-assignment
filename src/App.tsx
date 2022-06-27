@@ -1,4 +1,3 @@
-import './App.css';
 import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -21,7 +20,9 @@ const queryClient = new QueryClient({
 function App() {
   useEffect(() => {
     const prefetchCharacterList = () =>
-      queryClient.prefetchQuery(CharacterRequestID.LIST, getAllCharacters);
+      queryClient.prefetchQuery(CharacterRequestID.LIST, () =>
+        getAllCharacters(1)
+      );
 
     prefetchCharacterList();
 
@@ -36,7 +37,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<CharacterList />} />
-          <Route path="/:id" element={<CharacterDetail />} />
+          <Route path="/character/:id" element={<CharacterDetail />} />
         </Routes>
       </QueryClientProvider>
     </div>
