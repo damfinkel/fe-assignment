@@ -1,17 +1,43 @@
 import { Button, Pagination } from '@mui/material';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
-import { CharacterRequestID, getAllCharacters } from '../../api/characters';
+import { useSelector } from 'react-redux';
+import cx from 'classnames';
+
+import {
+  CharacterListError,
+  CharacterListResponse,
+  CharacterRequestID,
+  getAllCharacters
+} from '../../api/characters';
+import { FilterReducerState } from '../../redux/filterReducer';
 import FilterPanel from './FilterPanel';
 
 import styles from './styles.module.scss';
+import { AxiosResponse } from 'axios';
 
 function CharacterList() {
   const [page, setPage] = useState(1);
+  const visibleFilter = useSelector(
+    (state: FilterReducerState) => state.filter.visibleFilter
+  );
 
-  const { data, isLoading } = useQuery(
-    [CharacterRequestID.LIST, page],
-    () => getAllCharacters(page),
+  const search = useSelector(
+    (state: FilterReducerState) => state.filter.search
+  );
+  const status = useSelector(
+    (state: FilterReducerState) => state.filter.status
+  );
+  const gender = useSelector(
+    (state: FilterReducerState) => state.filter.gender
+  );
+
+  const { data, isLoading, isError, error } = useQuery<
+    AxiosResponse<CharacterListResponse>,
+    CharacterListError
+  >(
+    [CharacterRequestID.LIST, { page, search, status, gender }],
+    () => getAllCharacters({ page, search, status, gender }),
     { keepPreviousData: true }
   );
 
@@ -28,9 +54,20 @@ function CharacterList() {
     return <>Loading...</>;
   }
 
+  if (isError) {
+    if (error.response.status === 404) {
+      return <h2 className={styles.error}>No results</h2>;
+    }
+    return (
+      <h2 className={styles.error}>
+        There was an error. Please try again later
+      </h2>
+    );
+  }
+
   return (
     <main className={styles.container}>
-      <aside className={styles.leftPanel}>
+      <aside className={cx(styles.leftPanel, { [styles.show]: visibleFilter })}>
         <FilterPanel />
       </aside>
       <section className={styles.rightContent}>

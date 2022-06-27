@@ -21,7 +21,7 @@ function App() {
   useEffect(() => {
     const prefetchCharacterList = () =>
       queryClient.prefetchQuery(CharacterRequestID.LIST, () =>
-        getAllCharacters(1)
+        getAllCharacters({ page: 1 })
       );
 
     prefetchCharacterList();

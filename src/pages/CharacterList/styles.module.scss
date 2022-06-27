@@ -85,5 +85,10 @@
     bottom: 0;
     left: -300px;
     z-index: 1;
+    transition: left 200ms ease-in-out;
+
+    &.show {
+      left: 0;
+    }
   }
 }
