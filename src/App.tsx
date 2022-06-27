@@ -7,6 +7,8 @@ import CharacterList from './pages/CharacterList';
 import CharacterDetail from './pages/CharacterDetail';
 import { CharacterRequestID, getAllCharacters } from './api/characters';
 
+import NavBar from './components/NavBar';
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -31,6 +33,7 @@ function App() {
   return (
     <div className="App">
       <QueryClientProvider client={queryClient}>
+        <NavBar />
         <Routes>
           <Route path="/" element={<CharacterList />} />
           <Route path="/:id" element={<CharacterDetail />} />
