@@ -30,7 +30,7 @@ function NavBar() {
             sx={{ mr: 2 }}
             onClick={handleShowFilter}
           >
-            <MenuIcon />
+            <MenuIcon className={styles.menuIcon} />
           </IconButton>
           <img src={Logo} alt="Rick And Morty" className={styles.logo} />
         </Toolbar>
