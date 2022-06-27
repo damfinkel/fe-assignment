@@ -34,7 +34,7 @@ function FilterPanel() {
     dispatch(setStatus(event.target.value));
   const onChangeSearch = debounce(
     (event: any) => dispatch(setSearch(event.target.value)),
-    2000
+    1000
   );
 
   return (

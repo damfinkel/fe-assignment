@@ -34,6 +34,7 @@ module.exports = {
       2,
       { extensions: ['.js', '.jsx', '.ts', '.tsx'] }
     ],
+    'react/require-default-props': 'off',
     'import/extensions': [
       'error',
       'ignorePackages',

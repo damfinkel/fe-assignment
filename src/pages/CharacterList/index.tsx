@@ -1,8 +1,8 @@
-import { Button, Pagination } from '@mui/material';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { useSelector } from 'react-redux';
 import cx from 'classnames';
+import { AxiosResponse } from 'axios';
 
 import {
   CharacterListError,
@@ -14,7 +14,7 @@ import { FilterReducerState } from '../../redux/filterReducer';
 import FilterPanel from './FilterPanel';
 
 import styles from './styles.module.scss';
-import { AxiosResponse } from 'axios';
+import List from './List';
 
 function CharacterList() {
   const [page, setPage] = useState(1);
@@ -50,55 +50,20 @@ function CharacterList() {
     setPage(nextPage);
   };
 
-  if (isLoading) {
-    return <>Loading...</>;
-  }
-
-  if (isError) {
-    if (error.response.status === 404) {
-      return <h2 className={styles.error}>No results</h2>;
-    }
-    return (
-      <h2 className={styles.error}>
-        There was an error. Please try again later
-      </h2>
-    );
-  }
-
   return (
     <main className={styles.container}>
       <aside className={cx(styles.leftPanel, { [styles.show]: visibleFilter })}>
         <FilterPanel />
       </aside>
       <section className={styles.rightContent}>
-        <h1 className={styles.title}>Characters</h1>
-        <ul className={styles.listContainer}>
-          {characterData?.results.map((character) => (
-            <li key={character.id} className={styles.listItem}>
-              <img
-                src={character.image}
-                className={styles.characterImage}
-                alt={character.name}
-              />
-              <h2 className={styles.name}>{character.name}</h2>
-              <h2 className={styles.species}>Species: {character.species}</h2>
-              <h2 className={styles.status}>Status: {character.status}</h2>
-              <Button
-                className={styles.detailButton}
-                variant="contained"
-                href={`/character/${character.id}`}
-              >
-                Details
-              </Button>
-            </li>
-          ))}
-        </ul>
-        <Pagination
-          count={characterData?.info.pages ?? 1}
-          shape="rounded"
-          defaultPage={1}
-          onChange={handleChangePage}
-          page={page}
+        <List
+          pages={characterData?.info.pages ?? 1}
+          currentPage={page}
+          onChangePage={handleChangePage}
+          characters={characterData?.results ?? []}
+          isLoading={isLoading}
+          isError={isError}
+          status={error?.response.status}
         />
       </section>
     </main>
