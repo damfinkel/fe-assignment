@@ -2,6 +2,7 @@
   display: flex;
   max-height: calc(100vh - 64px);
   height: calc(100vh - 64px);
+  position: relative;
 }
 
 .leftPanel {
@@ -77,5 +78,12 @@
   width: 100%;
 }
 
-.pagination {
+@media screen and (max-width: 850px) {
+  .leftPanel {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -300px;
+    z-index: 1;
+  }
 }

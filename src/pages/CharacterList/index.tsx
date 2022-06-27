@@ -2,6 +2,7 @@ import { Button, Pagination } from '@mui/material';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { CharacterRequestID, getAllCharacters } from '../../api/characters';
+import FilterPanel from './FilterPanel';
 
 import styles from './styles.module.scss';
 
@@ -29,7 +30,9 @@ function CharacterList() {
 
   return (
     <main className={styles.container}>
-      <section className={styles.leftPanel}>TODO</section>
+      <aside className={styles.leftPanel}>
+        <FilterPanel />
+      </aside>
       <section className={styles.rightContent}>
         <h1 className={styles.title}>Characters</h1>
         <ul className={styles.listContainer}>
