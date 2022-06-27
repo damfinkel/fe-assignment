@@ -47,4 +47,5 @@ export const getAllCharacters = ({
   return api.get<CharacterListResponse>(`/character?${params}`);
 };
 
-export const getCharacter = (id: string) => api.get(`/character/${id}`);
+export const getCharacter = (id: string) =>
+  api.get<Character>(`/character/${id}`);
