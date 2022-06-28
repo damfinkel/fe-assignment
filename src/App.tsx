@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { ThemeProvider } from '@mui/material/styles';
 
+import theme from './theme';
 import CharacterList from './pages/CharacterList';
 import CharacterDetail from './pages/CharacterDetail';
 import { CharacterRequestID, getAllCharacters } from './api/characters';
@@ -35,13 +37,15 @@ function App() {
 
   return (
     <div className="App">
-      <QueryClientProvider client={queryClient}>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<CharacterList />} />
-          <Route path="/character/:id" element={<CharacterDetail />} />
-        </Routes>
-      </QueryClientProvider>
+      <ThemeProvider theme={theme}>
+        <QueryClientProvider client={queryClient}>
+          <NavBar />
+          <Routes>
+            <Route path="/" element={<CharacterList />} />
+            <Route path="/character/:id" element={<CharacterDetail />} />
+          </Routes>
+        </QueryClientProvider>
+      </ThemeProvider>
     </div>
   );
 }

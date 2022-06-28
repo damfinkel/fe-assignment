@@ -6,7 +6,7 @@
 }
 
 .leftPanel {
-  width: 300px;
+  width: 250px;
 }
 
 .rightContent {
@@ -25,12 +25,16 @@
     position: absolute;
     top: 0;
     bottom: 0;
-    left: -300px;
+    left: -255px;
     z-index: 1;
     transition: left 200ms ease-in-out;
 
     &.show {
       left: 0;
     }
+  }
+
+  .rightContent {
+    padding: 30px 15px;
   }
 }

@@ -5,13 +5,14 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 import { showFilter, FilterReducerState } from '../../redux/filterReducer';
-
 import Logo from '../../images/icons/ic_rick_and_morty.png';
-
 import styles from './styles.module.scss';
 
 function NavBar() {
+  const navigate = useNavigate();
   const visibleFilter = useSelector(
     (state: FilterReducerState) => state.filter.visibleFilter
   );
@@ -32,7 +33,9 @@ function NavBar() {
           >
             <MenuIcon className={styles.menuIcon} />
           </IconButton>
-          <img src={Logo} alt="Rick And Morty" className={styles.logo} />
+          <button type="button" onClick={() => navigate('/')}>
+            <img src={Logo} alt="Rick And Morty" className={styles.logo} />
+          </button>
         </Toolbar>
       </AppBar>
     </Box>

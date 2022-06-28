@@ -5,15 +5,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  background-color: #e7e0db;
 }
 
 $equalizer-black: #333;
 $equalizer-grey: #999;
+
+$shadow-color: #a0a0a0;
+$zombie: #e5d29f;
 
 * {
   box-sizing: border-box;

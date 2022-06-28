@@ -79,6 +79,12 @@ function List({
         defaultPage={1}
         onChange={onChangePage}
         page={currentPage}
+        sx={{
+          '& .MuiPaginationItem-root.Mui-selected': {
+            backgroundColor: '#83d2e4',
+            color: 'white'
+          }
+        }}
       />
       <Fab
         variant="extended"
@@ -86,7 +92,7 @@ function List({
         onClick={handleGoToTop}
       >
         <ArrowUpwardIcon sx={{ mr: 1 }} />
-        Go to top
+        <span className={styles.goToTopTitle}>Go to top</span>
       </Fab>
     </>
   );
