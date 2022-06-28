@@ -1,0 +1,16 @@
+.container {
+  opacity: 0;
+  transition: opacity 250ms ease-in;
+
+  & > :not(:last-child) {
+    margin-bottom: 20px;
+  }
+}
+
+.visible {
+  opacity: 1;
+}
+
+.attributeTitle {
+  width: 100px;
+}

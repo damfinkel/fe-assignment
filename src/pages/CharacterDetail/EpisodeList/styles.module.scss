@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.episodeContainer {
+  flex: 1 1 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.episodeDetail {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.tabContainer {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #1976d2;
+}

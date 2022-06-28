@@ -1,8 +1,12 @@
 import { useQuery } from 'react-query';
 import { useParams, useNavigate } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import ArrowBack from '@mui/icons-material/ArrowBack';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 import { CharacterRequestID, getCharacter } from '../../api/characters';
 import Attribute from './Attribute';
+import EpisodeList from './EpisodeList';
 import styles from './styles.module.scss';
 
 function CharacterDetail() {
@@ -31,8 +35,17 @@ function CharacterDetail() {
 
   const created = new Date(characterData.created).toLocaleDateString();
 
+  const handleBack = () => navigate(-1);
+
   return (
     <main className={styles.container}>
+      <Button
+        className={styles.backButton}
+        onClick={handleBack}
+        startIcon={<ArrowBackIosNewIcon className={styles.backIcon} />}
+      >
+        <span className={styles.backButtonTitle}>Back</span>
+      </Button>
       <section className={styles.topSection}>
         <img
           src={characterData.image}
@@ -49,6 +62,9 @@ function CharacterDetail() {
           <Attribute title="Origin" value={characterData.origin.name} />
           <Attribute title="Created" value={created} />
         </div>
+      </section>
+      <section className={styles.bottomSection}>
+        <EpisodeList episodeUrls={characterData.episode} />
       </section>
     </main>
   );

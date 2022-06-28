@@ -88,7 +88,6 @@ function List({
         <ArrowUpwardIcon sx={{ mr: 1 }} />
         Go to top
       </Fab>
-      ;
     </>
   );
 }
