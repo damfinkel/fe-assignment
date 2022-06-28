@@ -12,7 +12,7 @@ interface Props {
 function EpisodeList({ episodeUrls }: Props) {
   const [selectedTab, setSelectedTab] = useState(0);
 
-  const handleChange = (_: any, value: number) => setSelectedTab(value);
+  const handleChange = (_: unknown, value: number) => setSelectedTab(value);
   const episodeIds = useMemo(
     () => episodeUrls.slice(0, 5).map((url) => url.split('/episode/')?.[1]),
     [episodeUrls]

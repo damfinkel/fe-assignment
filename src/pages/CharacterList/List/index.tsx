@@ -59,7 +59,6 @@ function List({
 
   return (
     <>
-      <h1 className={styles.title}>Characters</h1>
       <ul className={styles.listContainer} ref={listRef}>
         {characters.map((character) => (
           <li key={character.id} className={styles.listItem}>

@@ -23,7 +23,11 @@ function CharacterDetail() {
   );
 
   if (isLoading) {
-    return <CircularProgress color="primary" className={styles.loading} />;
+    return (
+      <div className={styles.loadingContainer}>
+        <CircularProgress color="primary" className={styles.loading} />
+      </div>
+    );
   }
 
   const characterData = data?.data;
