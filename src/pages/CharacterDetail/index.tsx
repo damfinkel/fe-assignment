@@ -1,8 +1,8 @@
 import { useQuery } from 'react-query';
 import { useParams, useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
-import ArrowBack from '@mui/icons-material/ArrowBack';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import { CharacterRequestID, getCharacter } from '../../api/characters';
 import Attribute from './Attribute';
@@ -18,9 +18,13 @@ function CharacterDetail() {
     return <div />;
   }
 
-  const { data } = useQuery([CharacterRequestID.DETAIL, id], () =>
+  const { data, isLoading } = useQuery([CharacterRequestID.DETAIL, id], () =>
     getCharacter(id)
   );
+
+  if (isLoading) {
+    return <CircularProgress color="primary" className={styles.loading} />;
+  }
 
   const characterData = data?.data;
 
@@ -35,12 +39,16 @@ function CharacterDetail() {
 
   const created = new Date(characterData.created).toLocaleDateString();
 
-  const handleBack = () => navigate(-1);
+  const handleBack = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    navigate(-1);
+  };
 
   return (
     <main className={styles.container}>
       <Button
         className={styles.backButton}
+        variant="text"
         onClick={handleBack}
         startIcon={<ArrowBackIosNewIcon className={styles.backIcon} />}
       >

@@ -1,8 +1,10 @@
 import { useRef } from 'react';
 import Pagination from '@mui/material/Pagination';
+import CircularProgress from '@mui/material/CircularProgress';
 import Fab from '@mui/material/Fab';
 import Button from '@mui/material/Button';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import { useNavigate } from 'react-router-dom';
 
 import styles from './styles.module.scss';
 import { Character } from '../../../interfaces/character';
@@ -26,6 +28,7 @@ function List({
   isLoading,
   status
 }: Props) {
+  const navigate = useNavigate();
   const listRef = useRef<HTMLUListElement | null>(null);
 
   const handleGoToTop = () => {
@@ -35,7 +38,7 @@ function List({
   };
 
   if (isLoading) {
-    return <>Loading...</>;
+    return <CircularProgress color="primary" />;
   }
 
   if (isError) {
@@ -48,6 +51,11 @@ function List({
       </h2>
     );
   }
+
+  const onSelectCharacter = (e: React.MouseEvent<HTMLElement>, id: number) => {
+    e.preventDefault();
+    navigate(`/character/${id}`);
+  };
 
   return (
     <>
@@ -66,7 +74,8 @@ function List({
             <Button
               className={styles.detailButton}
               variant="contained"
-              href={`/character/${character.id}`}
+              color="primary"
+              onClick={(e) => onSelectCharacter(e, character.id)}
             >
               Details
             </Button>

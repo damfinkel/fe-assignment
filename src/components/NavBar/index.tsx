@@ -1,4 +1,3 @@
-import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -20,7 +19,7 @@ function NavBar() {
   const handleShowFilter = () => dispatch(showFilter(!visibleFilter));
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, position: 'relative', zIndex: 1 }}>
       <AppBar position="static" className={styles.navBar}>
         <Toolbar>
           <IconButton

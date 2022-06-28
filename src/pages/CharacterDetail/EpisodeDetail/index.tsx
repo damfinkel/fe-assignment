@@ -1,5 +1,6 @@
 import { useQuery } from 'react-query';
 import cx from 'classnames';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import { EpisodeRequestID, getEpisode } from '../../../api/episodes';
 import Attribute from '../Attribute';
@@ -13,10 +14,14 @@ interface Props {
 }
 
 function EpisodeDetail({ id, visible, className }: Props) {
-  const { data } = useQuery([EpisodeRequestID.DETAIL, id], () =>
+  const { data, isLoading } = useQuery([EpisodeRequestID.DETAIL, id], () =>
     getEpisode(id)
   );
   const episode = data?.data;
+
+  if (isLoading && visible) {
+    return <CircularProgress color="primary" className={styles.loading} />;
+  }
 
   if (!episode) {
     return <div>There was a problem. Please try again later</div>;

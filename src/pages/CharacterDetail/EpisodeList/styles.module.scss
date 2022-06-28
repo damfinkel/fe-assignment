@@ -1,3 +1,5 @@
+@import '../../..//index.scss';
+
 .container {
   display: flex;
   flex-direction: column;
@@ -10,7 +12,7 @@
   flex-direction: column;
 }
 
-.episodeDetail {
+.episodeDetail:not(:first-child) {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -20,5 +22,5 @@
 
 .tabContainer {
   margin-bottom: 20px;
-  border-bottom: 1px solid #1976d2;
+  border-bottom: 1px solid $forest-green;
 }

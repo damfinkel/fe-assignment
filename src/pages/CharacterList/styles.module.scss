@@ -3,6 +3,7 @@
   max-height: calc(100vh - 64px);
   height: calc(100vh - 64px);
   position: relative;
+  z-index: 0;
 }
 
 .leftPanel {

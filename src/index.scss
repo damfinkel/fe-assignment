@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap');
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -13,10 +15,11 @@ $equalizer-grey: #999;
 
 $shadow-color: #a0a0a0;
 $zombie: #e5d29f;
+$forest-green: #2f9331;
 
 * {
   box-sizing: border-box;
-  font-family: Roboto, sans-serif;
+  font-family: 'PT Sans', Roboto, sans-serif;
   margin: 0;
   padding: 0;
 
